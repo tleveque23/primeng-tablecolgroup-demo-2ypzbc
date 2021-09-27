@@ -1,0 +1,64 @@
+<button pButton (click)="addColumn()">Add a column</button>
+
+<p-table [value]="sales" [scrollable]="true" [scrollHeight]="'300px'">
+
+
+<ng-template pTemplate="colgroup">
+    <colgroup>
+        <col style="width: 15rem">
+        <col style="width: 15rem">
+        <col style="width: 7rem">
+        <col style="width: 7rem">
+        <col style="width: 12rem">
+        <col style="width: 12rem">        
+
+        <ng-container *ngFor="let p of sales[0].result; let i=index; let odd = odd" >
+            <col style="width: 6rem">  
+        </ng-container>
+
+    </colgroup>
+</ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th rowspan="3" style="width: 15rem">Product</th>
+            <th colspan="5">Sale Rate</th>
+        </tr>
+        <tr>
+            <th rowspan="3" style="width: 15rem">Comment</th>
+            <th colspan="2">Sales</th>
+            <th colspan="2">Profits</th>
+        </tr>
+        <tr>
+            <th style="width: 7rem">Last Year</th>
+            <th style="width: 7rem">This Year</th>
+            <th style="width: 12rem">Last Year</th>
+            <th style="width: 12rem">This Year</th>
+
+            <ng-container *ngFor="let p of sales[0].result; let i=index; let odd = odd" >
+                <th id="header-month-1" >
+                Result {{i+1}}
+                </th>
+            </ng-container>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-sale let-index>
+        <tr>
+            <td style="width: 15rem">{{sale.product}}</td>
+            <td style="width: 15rem">{{sale.product}}</td>
+            <td style="width: 7rem">{{sale.lastYearSale}}%</td>
+            <td style="width: 7rem">{{sale.thisYearSale}}%</td>
+            <td style="width: 12rem">{{sale.lastYearProfit | currency: 'USD'}}</td>
+            <td style="width: 12rem">{{sale.thisYearProfit | currency: 'USD'}}</td>
+
+            <ng-container *ngFor="let r of sale.result; let i=index; let odd = odd" >
+                <td  >
+                 {{r}}
+                </td>
+            </ng-container>
+        </tr>
+    </ng-template>
+    
+</p-table>
