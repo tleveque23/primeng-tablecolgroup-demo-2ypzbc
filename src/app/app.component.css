@@ -1,0 +1,8 @@
+:host ::ng-deep .p-datatable-wrapper table {
+  width: unset!important;
+}
+
+:host ::ng-deep .p-datatable-wrapper {
+  width: fit-content!important;
+  max-width: calc(100vw - 4rem);
+}
